@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ingrediente;
+use App\Plato;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         $ingredientes = Ingrediente::all()->take(4);
-        return view('home')->with('ingredientes', $ingredientes);
+        $platos = Plato::all()->take(4);
+        return view('home')
+                  ->with('ingredientes', $ingredientes)
+                  ->with('platos', $platos);
     }
 }
