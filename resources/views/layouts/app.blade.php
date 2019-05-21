@@ -52,7 +52,9 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <a href="/home" class="nav-link text-dark">Inicio</a>
+                            <li class="nav-item dropdown d-inline">
+                              
                                 <a id="navbarDropdown" class="text-dark nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -74,7 +76,7 @@
                 </div>
             </div>
         </nav>
-
+        @include('layouts/messages')
         <main class="py-4">
             @yield('content')
         </main>
