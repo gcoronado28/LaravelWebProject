@@ -6,3 +6,19 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+#loader {
+  text-align: center;
+  position: fixed;
+  background-color: rgb(255, 255, 255);
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+  padding-top: 10em;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s .5s, opacity .5s linear;
+}

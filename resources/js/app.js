@@ -30,3 +30,35 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+$(window).bind("load", function(){
+  var loader = document.getElementById("loader");
+  loader.classList.add('hidden');
+});
+var ingsToDelete = [];
+var ingPlato = document.getElementsByName("ingsToDelete")[0];
+var selectIng = document.getElementsByName("ingrediente")[0];
+var delIngs = document.getElementsByClassName("delIng");
+var title = document.getElementsByClassName("addIngTitle")[0];
+
+function deleteIng() {
+  /*var opt = document.createElement('option');
+  opt.appendChild( document.createTextNode(this.previousElementSibling.id) );*/
+  ingsToDelete.push(this.previousElementSibling.id);
+  this.previousElementSibling.innerHTML = '<del>'+this.previousElementSibling.innerHTML+'</del>';
+  this.classList.add('d-none');
+  ingPlato.value = ingsToDelete;
+  console.log(ingPlato.value);
+}
+
+if(title){
+  title.addEventListener('click', function(){
+    document.getElementsByClassName("form-row")[0].classList.remove('d-none');
+    this.style.textDecoration = 'none';
+    this.style.cursor = 'unset';
+  });
+}
+
+for(let i of delIngs){
+  i.addEventListener('click', deleteIng);
+}

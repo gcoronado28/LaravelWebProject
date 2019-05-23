@@ -39,7 +39,10 @@
             <div class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
               <div class="d-flex justify-content-between align-items-center w-100">
                 <strong class="text-dark">{{$p->nombre}}</strong>
-                <a href="/platos/{{$p->codigo}}/edit">Editar</a>
+                <div>
+                  <a href="/platos/{{$p->codigo}}" class="mr-4">Detalles</a>
+                  <a href="/platos/{{$p->codigo}}/edit">Editar</a>
+                </div>
               </div>
               <span class="d-block">{{$p->valor}}</span>
             </div>

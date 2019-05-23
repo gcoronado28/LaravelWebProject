@@ -68,7 +68,7 @@ class IngredienteController extends Controller
      */
     public function edit($id)
     {
-        $ingrediente = Ingrediente::where('codigo', $id)->first();
+        $ingrediente = Ingrediente::find($id);
         return view('ingredientes.edit')->with('ingrediente', $ingrediente);
     }
 

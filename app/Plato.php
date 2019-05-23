@@ -11,4 +11,10 @@ class Plato extends Model
     protected $primaryKey = 'codigo';
 
     protected $table = 'plato';
+  
+    public function ingredientes()
+    {
+      return $this->belongsToMany('App\Ingrediente', 'plato_ingrediente', 'codplato', 'codingrediente')
+        ->withTimestamps();
+    }
 }

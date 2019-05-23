@@ -29,6 +29,6 @@ class CreateOrdenesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ordens');
+        Schema::dropIfExists('orden');
     }
 }
