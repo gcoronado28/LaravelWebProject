@@ -61,17 +61,14 @@ class PlatoController extends Controller
      */
     public function show($id)
     {
-        $ingredientesAll = Ingrediente::all();
-
-        $plato = Plato::find($id);
-        $ingredientesAdded = $plato->ingredientes()->select('id', 'nombre', 'cantidad')->get();
-      
+      $plato = Plato::find($id);
+      $ingredientesAdded = $plato->ingredientes()->select('id', 'nombre', 'cantidad')->get();
       
       $ingredientes = Ingrediente::whereNotIn('codigo',function($q) use ($id) {
          $q->select('codingrediente')->from('plato_ingrediente')->where('codplato', $id);
       })->get();
       
-        return view('platos.show')
+      return view('platos.show')
                   ->with('plato', $plato)
                   ->with('ingredientes', $ingredientes)
                   ->with('ingredientesAdded', $ingredientesAdded);
@@ -87,6 +84,17 @@ class PlatoController extends Controller
     {
         //
     }
+  
+    public function relate(Request $request, $id)
+    {
+      $plato = Plato::find($id);
+      if($request->cantidad != null){
+        $plato->ingredientes()->attach($request->ingrediente, array('cantidad' => $request->cantidad));
+      }
+      return redirect()->action(
+        'PlatoController@show', ['codigo' => $plato->codigo]
+      )->with('success', 'Ingrediente agregado al plato con éxito.');
+    }
 
     /**
      * Update the specified resource in storage.
@@ -97,10 +105,17 @@ class PlatoController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $this->validate($request, [
+        'nombre' => 'required',
+        'valor' => 'required'
+      ]);
+
       $plato = Plato::find($id);
-      if($request->cantidad != null){
-        $plato->ingredientes()->attach($request->ingrediente, array('cantidad' => $request->cantidad));
-      }
+
+      $plato->nombre = $request->input('nombre');
+      $plato->valor = $request->input('valor');
+      $plato->save();
+
       if($request->ingsToDelete != null){
         $arr = explode(",",$request->ingsToDelete);
         foreach ($arr as $i){
@@ -109,7 +124,7 @@ class PlatoController extends Controller
       }
       return redirect()->action(
         'PlatoController@show', ['codigo' => $plato->codigo]
-      )->with('success', 'Listo! Agrega o quita más ingredientes.');
+      )->with('success', 'Plato actualizado con éxito.');
     }
 
     /**

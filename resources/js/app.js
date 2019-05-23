@@ -31,32 +31,35 @@ const app = new Vue({
     el: '#app',
 });
 
-$(window).bind("load", function(){
-  var loader = document.getElementById("loader");
-  loader.classList.add('hidden');
-});
 var ingsToDelete = [];
 var ingPlato = document.getElementsByName("ingsToDelete")[0];
 var selectIng = document.getElementsByName("ingrediente")[0];
 var delIngs = document.getElementsByClassName("delIng");
-var title = document.getElementsByClassName("addIngTitle")[0];
+var smallEdit = document.getElementById('smallEdit');
+var smallDelete = document.getElementById('smallDelete');
+var valorPlato = document.getElementById('smallDelete');
+var updateBtn = document.getElementById('updateBtn');
+
+$("#nombrePlato").on("input", function() {
+    smallEdit.classList.remove('d-none');
+    updateBtn.removeAttribute('disabled');
+});
+
+$("#valorPlato").on("input", function() {
+    smallEdit.classList.remove('d-none');
+    updateBtn.removeAttribute('disabled');
+});
 
 function deleteIng() {
-  /*var opt = document.createElement('option');
-  opt.appendChild( document.createTextNode(this.previousElementSibling.id) );*/
+  smallDelete.classList.remove('d-none');
+  updateBtn.removeAttribute('disabled');
   ingsToDelete.push(this.previousElementSibling.id);
+  this.previousElementSibling.classList.remove('btn-secondary');
+  this.previousElementSibling.classList.add('btn-danger');
   this.previousElementSibling.innerHTML = '<del>'+this.previousElementSibling.innerHTML+'</del>';
   this.classList.add('d-none');
   ingPlato.value = ingsToDelete;
   console.log(ingPlato.value);
-}
-
-if(title){
-  title.addEventListener('click', function(){
-    document.getElementsByClassName("form-row")[0].classList.remove('d-none');
-    this.style.textDecoration = 'none';
-    this.style.cursor = 'unset';
-  });
 }
 
 for(let i of delIngs){

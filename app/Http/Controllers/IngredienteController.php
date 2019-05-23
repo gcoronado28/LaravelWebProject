@@ -86,7 +86,7 @@ class IngredienteController extends Controller
         'proveedor' => 'required'
       ]);
       
-      $ingrediente = Ingrediente::where('codigo', $id)->first();
+      $ingrediente = Ingrediente::find($id);
       $ingrediente->nombre = $request->input('nombre');
       $ingrediente->proveedor = $request->input('proveedor');
       $ingrediente->save();

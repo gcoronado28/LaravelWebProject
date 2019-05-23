@@ -19,5 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::resource('ingredientes', 'IngredienteController');
 Route::resource('platos', 'PlatoController');
+Route::put('/platos/relate/{plato}','PlatoController@relate')->name('platos.relate');
