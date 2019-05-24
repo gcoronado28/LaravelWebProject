@@ -53,7 +53,9 @@
                                 </li>
                             @endif
                         @else
-                            <a href="/home" class="nav-link text-dark">Inicio</a>
+                      <a href="/home" class="nav-link text-dark">Inicio</a>
+                            <a href="/ingredientes" class="nav-link text-dark">Ingredientes</a>
+                            <a href="/platos" class="nav-link text-dark">Platos</a>
                             <li class="nav-item dropdown d-inline">
                               
                                 <a id="navbarDropdown" class="text-dark nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

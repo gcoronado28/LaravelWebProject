@@ -38,7 +38,7 @@
 </div>
 <div class="container">
   <div class="d-flex">
-    <a href="/platos" class="btn btn-primary mr-2" style="height: 100%;">Atrás</a>
+    <a href="{{ URL::previous() }}" class="btn btn-primary mr-2" style="height: 100%;">Atrás</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Ingrediente</button>
   </div>
   <form method="POST" action="{{ route('platos.update', $plato->codigo) }}" class="mt-4">

@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container">
+    <div class="d-flex">
+      <a href="{{ URL::previous() }}" class="btn btn-primary mr-2" style="height: 100%;">Atrás</a>
+    </div>
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h4 class="text-center p-2">Editar ingrediente</h4>
       <form method="POST" action="{{ route('ingredientes.update', $ingrediente->codigo) }}" class="m-4">

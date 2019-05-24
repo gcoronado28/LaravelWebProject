@@ -9,6 +9,12 @@ use App\Ingrediente;
 
 class PlatoController extends Controller
 {
+  
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+  
     /**
      * Display a listing of the resource.
      *
@@ -74,17 +80,6 @@ class PlatoController extends Controller
                   ->with('ingredientesAdded', $ingredientesAdded);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-  
     public function relate(Request $request, $id)
     {
       $plato = Plato::find($id);
