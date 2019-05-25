@@ -43,7 +43,7 @@
         </div>
         @if($orden->estado == 'N')
           <a href="{{ route('ordenes.edit', $orden->numero) }}" class="btn btn-primary">Editar</a>
-          <button type="submit" class="btn btn-primary mr-2">Cerrar</button>
+          @if(count($platosAdded) > 0) <button type="submit" class="btn btn-primary mr-2">Cerrar</button> @endif
         @endif
       </form>
     </div>

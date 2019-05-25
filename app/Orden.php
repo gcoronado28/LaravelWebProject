@@ -18,4 +18,13 @@ class Orden extends Model
         ->withPivot('id', 'cantidad','valor')
         ->withTimestamps();
     }
+  
+  public function valorTotal()
+  {
+    $valorTotal = 0;
+    foreach($this->platos()->get() as $pa){
+        $valorTotal += $pa->pivot->valor;
+    }
+    return $valorTotal;
+  }
 }

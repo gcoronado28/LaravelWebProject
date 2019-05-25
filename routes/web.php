@@ -27,3 +27,4 @@ Route::put('/ordenes/relate/{orden}','OrdenController@relate')->name('ordenes.re
 Route::put('/orden/close','OrdenController@close')->name('ordenes.close');
 
 Route::post('/orden/unrelate','OrdenController@unrelate')->name('orden.unrelate');
+Route::get('/orden/ventas','OrdenController@ventas')->name('orden.ventas');

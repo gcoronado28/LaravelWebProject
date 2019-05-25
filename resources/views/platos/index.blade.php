@@ -22,7 +22,7 @@
       <div class="d-flex justify-content-between align-items-center w-100 mt-3">
         <a href="/platos/create" class="text-right m-1">Agregar plato</a>
         <div class="mt-2">
-          <!--{{$platos->links()}}-->
+          {{$platos->links()}}
         </div>
       </div>
       @else

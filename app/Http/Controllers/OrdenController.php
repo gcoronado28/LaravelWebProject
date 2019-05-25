@@ -22,7 +22,8 @@ class OrdenController extends Controller
      */
     public function index()
     {
-        return "Index view";
+        $ordenes = Orden::paginate(5);
+        return view('ordenes.index')->with('ordenes', $ordenes);
     }
   
      /**
@@ -76,10 +77,7 @@ class OrdenController extends Controller
 
           $platosAdded = $orden->platos()->get();
           
-          $valorTotal = 0;
-          foreach($platosAdded as $pa){
-            $valorTotal += $pa->pivot->valor;
-          }
+          $valorTotal = $orden->valorTotal();
 
           $orden = Orden::find($id);
           return view('ordenes.show')
@@ -174,6 +172,18 @@ class OrdenController extends Controller
           )->with('success', 'Orden cerrada con éxito.');
         }
       return abort(404);
+    }
+  
+    public function ventas(Request $request)
+    {
+      $ordenes = Orden::where( ['fecha' => $request->fecha, 'estado' => 'C'])->get();
+      $valorTotalDia = 0;
+      foreach($ordenes as $orden){
+        $valorTotalDia += $orden->valorTotal();
+      }
+      return view('ordenes.ventas')
+                ->with('ordenes', $ordenes)
+                ->with('valorTotalDia', $valorTotalDia);
     }
 
     /**

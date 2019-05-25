@@ -54,7 +54,6 @@
                             @endif
                         @else
                             <a href="/home" class="nav-link text-dark">Inicio</a>
-
                             <li class="nav-item dropdown d-inline">
                                 <a id="navbarDropdown" class="text-dark nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Ingredientes <span class="caret"></span>
@@ -81,8 +80,9 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                   <a href="/ordenes/create" class="dropdown-item text-dark">Nueva Orden</a>
-                                  <button type="button" class="dropdown-item text-dark" data-toggle="modal" data-target="#cerrarOrden" data-whatever="@mdo">Cerrar Orden</button>
                                   <a href="/ordenes "class="dropdown-item text-dark">Ver Órdenes</a>
+                                  <button type="button" class="dropdown-item text-dark" data-toggle="modal" data-target="#cerrarOrden" data-whatever="@mdo">Cerrar Orden</button>
+                                  <button type="button" class="dropdown-item text-dark" data-toggle="modal" data-target="#ventasDia" data-whatever="@mdo">Ventas del Día</button>
                                 </div>
                             </li>
                       
@@ -124,6 +124,30 @@
                       <div class="form-group">
                         <label for="cantidad" class="col-form-label">Número de mesa</label>
                         <input type="number" name="nummesa" class="form-control" id="numMesa" required>
+                      </div>
+                      <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="ventasDia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ventas del día</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form method="GET" action="{{ route('orden.ventas') }}">
+                      <div class="form-group">
+                        <label for="cantidad" class="col-form-label">Seleccione la fecha</label>
+                        <input type="date" name="fecha" class="form-control" id="fecha" required>
                       </div>
                       <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cancelar</button>
