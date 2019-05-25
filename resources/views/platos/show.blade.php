@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="agregarIngrediente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -39,7 +39,7 @@
 <div class="container">
   <div class="d-flex">
     <a href="{{ URL::previous() }}" class="btn btn-primary mr-2" style="height: 100%;">Atrás</a>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Ingrediente</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarIngrediente" data-whatever="@mdo">Agregar Ingrediente</button>
   </div>
   <form method="POST" action="{{ route('platos.update', $plato->codigo) }}" class="mt-4">
     @csrf

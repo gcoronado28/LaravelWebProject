@@ -22,10 +22,10 @@ class OrdenController extends Controller
      */
     public function index()
     {
-        return "";
+        return "Index view";
     }
-
-    /**
+  
+     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -55,12 +55,12 @@ class OrdenController extends Controller
           $orden->save();
 
           return redirect()->action(
-            'OrdenController@show', ['numero' => $orden->numero]
+            'OrdenController@edit', ['numero' => $orden->numero]
           )->with('success', 'Orden abierta! Añádele los platos que desees.');
         }
         return redirect()->action(
           'OrdenController@create'
-        )->with('error', 'Ya existe una órden abierta en la mesa '.$numMesa.'.');
+        )->with('error', 'Ya existe una orden abierta en la mesa '.$numMesa.'.');
         
     }
 
@@ -73,16 +73,18 @@ class OrdenController extends Controller
     public function show($id)
     {
         if($orden = Orden::find($id)){
-          $platosAdded = $orden->platos()->get();
 
-          $platos = Plato::whereNotIn('codigo',function($q) use ($id) {
-             $q->select('codplato')->from('orden_plato')->where('numorden', $id);
-          })->get();
+          $platosAdded = $orden->platos()->get();
+          
+          $valorTotal = 0;
+          foreach($platosAdded as $pa){
+            $valorTotal += $pa->pivot->valor;
+          }
 
           $orden = Orden::find($id);
           return view('ordenes.show')
                  ->with('orden', $orden)
-                 ->with('platos', $platos)
+                 ->with('valorTotal', $valorTotal)
                  ->with('platosAdded', $platosAdded);
         }
         return abort(404);
@@ -96,7 +98,20 @@ class OrdenController extends Controller
      */
     public function edit($id)
     {
-        //
+        if($orden = Orden::find($id)){
+          $platosAdded = $orden->platos()->get();
+
+          $platos = Plato::whereNotIn('codigo',function($q) use ($id) {
+             $q->select('codplato')->from('orden_plato')->where('numorden', $id);
+          })->get();
+
+          $orden = Orden::find($id);
+          return view('ordenes.edit')
+                 ->with('orden', $orden)
+                 ->with('platos', $platos)
+                 ->with('platosAdded', $platosAdded);
+        }
+        return abort(404);
     }
   
   
@@ -109,8 +124,8 @@ class OrdenController extends Controller
         $orden->platos()->attach($request->plato, array( 'cantidad' => $request->cantidad, 'valor' => $valor ));
       }
       return redirect()->action(
-        'OrdenController@show', ['numero' => $orden->numero]
-      )->with('success', 'Plato agregado a la órden con éxito.');
+        'OrdenController@edit', ['numero' => $orden->numero]
+      )->with('success', 'Plato agregado a la orden con éxito.');
     }
   
   
@@ -122,8 +137,24 @@ class OrdenController extends Controller
         DB::delete('delete from orden_plato where id = ?', [$ordenPlato]);
       }
       return redirect()->action(
-        'OrdenController@show', ['numero' => $orden->numero]
-      )->with('success', 'Plato eliminado de la órden con éxito.');
+        'OrdenController@edit', ['numero' => $orden->numero]
+      )->with('success', 'Plato eliminado de la orden con éxito.');
+    }
+  
+    public function close(Request $request)
+    {
+        $this->validate($request, [ 'nummesa' => 'required' ]);
+        $numMesa = $request->input('nummesa');
+        $mesas = Orden::where(['nummesa' => $numMesa, 'estado' => 'N'])->get();
+
+        if(count($mesas) == 0){
+          return redirect()->action(
+            'HomeController@index'
+          )->with('error', 'No existe una orden abierta en la mesa '.$numMesa.'.');
+        }
+        return redirect()->action(
+          'OrdenController@show', ['numero' => $mesas->first()->numero]
+        )->with('success', 'Orden encontrada con éxito.');
     }
 
     /**
@@ -135,7 +166,14 @@ class OrdenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($orden = Orden::find($id)){
+          $orden->estado = 'C';
+          $orden->save();
+          return redirect()->action(
+            'OrdenController@show', ['numero' => $orden->numero]
+          )->with('success', 'Orden cerrada con éxito.');
+        }
+      return abort(404);
     }
 
     /**

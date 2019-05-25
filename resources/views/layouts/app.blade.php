@@ -81,7 +81,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                   <a href="/ordenes/create" class="dropdown-item text-dark">Nueva Orden</a>
-                                  <a href="/" class="dropdown-item text-dark">Cerrar Orden</a>
+                                  <button type="button" class="dropdown-item text-dark" data-toggle="modal" data-target="#cerrarOrden" data-whatever="@mdo">Cerrar Orden</button>
                                   <a href="/ordenes "class="dropdown-item text-dark">Ver Órdenes</a>
                                 </div>
                             </li>
@@ -108,6 +108,32 @@
         </nav>
         @include('layouts/messages')
         <main class="py-4">
+            <div class="modal fade" id="cerrarOrden" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cerrar Orden</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form method="POST" action="{{ route('ordenes.close') }}">
+                      @csrf
+                      @method('PUT')
+                      <div class="form-group">
+                        <label for="cantidad" class="col-form-label">Número de mesa</label>
+                        <input type="number" name="nummesa" class="form-control" id="numMesa" required>
+                      </div>
+                      <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
             @yield('content')
         </main>
     </div>
