@@ -53,7 +53,7 @@
       </div>
       <div class="form-group">
         <label for="valorPlato">Valor</label>
-        <input type="text" name="valor" class="form-control" id="valorPlato" placeholder="Ej: Panes Ochoa SA" value="{{$plato->valor}}">
+        <input type="number" name="valor" step="0.00001" min="1" class="form-control" id="valorPlato" placeholder="Ej: Panes Ochoa SA" value="{{$plato->valor}}">
       </div>
       <small id="smallEdit" class="form-text text-muted d-none">Presiona Actualizar si deseas guardar los cambios, o descártalos.</small>
     </div>

@@ -53,14 +53,14 @@
                                 </li>
                             @endif
                         @else
-                            <a href="/home" class="nav-link text-dark">Inicio</a>
+                            <a href="{{ route('home') }}" class="nav-link text-dark">Inicio</a>
                             <li class="nav-item dropdown d-inline">
                                 <a id="navbarDropdown" class="text-dark nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Ingredientes <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                  <a href="/ingredientes/create" class="dropdown-item text-dark">Nuevo Ingrediente</a>
-                                  <a href="/ingredientes" class="dropdown-item text-dark">Ver Ingredientes</a>
+                                  <a href="{{ route('ingredientes.create') }}" class="dropdown-item text-dark">Nuevo Ingrediente</a>
+                                  <a href="{{ route('ingredientes.index') }}" class="dropdown-item text-dark">Ver Ingredientes</a>
                                 </div>
                             </li>
 
@@ -69,8 +69,8 @@
                                     Platos <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                  <a href="/platos/create" class="dropdown-item text-dark">Nuevo Plato</a>
-                                  <a href="/platos" class="dropdown-item text-dark">Ver Platos</a>
+                                  <a href="{{ route('platos.create') }}" class="dropdown-item text-dark">Nuevo Plato</a>
+                                  <a href="{{ route('platos.index') }}" class="dropdown-item text-dark">Ver Platos</a>
                                 </div>
                             </li>
 
@@ -79,8 +79,8 @@
                                     Órdenes <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                  <a href="/ordenes/create" class="dropdown-item text-dark">Nueva Orden</a>
-                                  <a href="/ordenes "class="dropdown-item text-dark">Ver Órdenes</a>
+                                  <a href="{{ route('ordenes.create') }}" class="dropdown-item text-dark">Nueva Orden</a>
+                                  <a href="{{ route('ordenes.index') }} "class="dropdown-item text-dark">Ver Órdenes</a>
                                   <button type="button" class="dropdown-item text-dark" data-toggle="modal" data-target="#cerrarOrden" data-whatever="@mdo">Cerrar Orden</button>
                                   <button type="button" class="dropdown-item text-dark" data-toggle="modal" data-target="#ventasDia" data-whatever="@mdo">Ventas del Día</button>
                                 </div>

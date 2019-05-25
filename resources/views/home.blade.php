@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="d-flex">
-      <a href="/ordenes/create" class="btn btn-primary mr-2" style="height: 100%;">Abrir Orden</a>
+      <a href="{{ route('ordenes.create') }}" class="btn btn-primary mr-2" style="height: 100%;">Abrir Orden</a>
     </div>
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">Ingredientes</h6>
@@ -13,7 +13,7 @@
             <div class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
               <div class="d-flex justify-content-between align-items-center w-100">
                 <strong class="text-dark">{{$i->nombre}}</strong>
-                <a href="/ingredientes/{{$i->codigo}}/edit">Editar</a>
+                <a href="{{ route('ingredientes.edit', $i->codigo) }}">Editar</a>
               </div>
               <span class="d-block">{{$i->proveedor}}</span>
             </div>
@@ -26,10 +26,10 @@
       @endif
       <div class="d-flex justify-content-between align-items-center w-100">
         <small class="d-inline text-uppercase text-left mt-3">
-          <a href="/ingredientes/create">Agregar Ingrediente</a>
+          <a href="{{ route('ingredientes.create') }}">Agregar Ingrediente</a>
         </small>
         <small class="d-inline text-uppercase text-right mt-3">
-          <a href="/ingredientes">Ver todos</a>
+          <a href="{{ route('ingredientes.index') }}">Ver todos</a>
         </small>
       </div>
     </div>
@@ -43,7 +43,7 @@
               <div class="d-flex justify-content-between align-items-center w-100">
                 <strong class="text-dark">{{$p->nombre}}</strong>
                 <div>
-                  <a href="/platos/{{$p->codigo}}" class="mr-4">Ver</a>
+                  <a href="{{ route('platos.show', $p->codigo) }}" class="mr-4">Ver</a>
                 </div>
               </div>
               <span class="d-block">{{$p->valor}}</span>
@@ -57,10 +57,10 @@
       @endif
       <div class="d-flex justify-content-between align-items-center w-100">
         <small class="d-inline text-uppercase text-left mt-3">
-          <a href="/platos/create">Agregar Plato</a>
+          <a href="{{ route('platos.create') }}">Agregar Plato</a>
         </small>
         <small class="d-inline text-uppercase text-right mt-3">
-          <a href="/platos">Ver todos</a>
+          <a href="{{ route('platos.index') }}">Ver todos</a>
         </small>
       </div>
     </div>

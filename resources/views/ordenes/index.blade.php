@@ -11,7 +11,7 @@
               <div class="d-flex justify-content-between align-items-center w-100">
                 <strong class="text-dark">Orden {{$o->numero}}. Mesa {{$o->nummesa}}</strong>
                 <div>
-                  <a href="/ordenes/{{$o->numero}}" class="mr-3">Ver</a>
+                  <a href="{{ route('ordenes.show', $o->numero) }}" class="mr-3">Ver</a>
                 </div>
               </div>
               <span class="d-block">{{$o->fecha}}</span>
@@ -24,7 +24,7 @@
           </div>    
         @endforeach
       <div class="d-flex justify-content-between align-items-center w-100 mt-3">
-        <a href="/ordenes/create" class="text-right m-1">Agregar orden</a>
+        <a href="{{ route('ordenes.create') }}" class="text-right m-1">Agregar orden</a>
         <div class="mt-2">
           {{$ordenes->links()}}
         </div>
@@ -32,7 +32,7 @@
       @else
         <div class="d-flex justify-content-between align-items-center w-100">
           <strong class="text-dark">No se encontraron órdenes</strong>
-          <a href="/ordenes/create" class="d-block text-right">Agregar</a>
+          <a href="{{ route('ordenes.create') }}" class="d-block text-right">Agregar</a>
         </div>
       @endif
     </div>

@@ -11,7 +11,7 @@
               <div class="d-flex justify-content-between align-items-center w-100">
                 <strong class="text-dark">{{$p->codigo}}. {{$p->nombre}}</strong>
                 <div>
-                  <a href="/platos/{{$p->codigo}}" class="mr-3">Ver</a>
+                  <a href="{{ route('platos.show', $p->codigo) }}" class="mr-3">Ver</a>
                 </div>
               </div>
               <span class="d-block">{{$p->valor}}</span>
@@ -20,7 +20,7 @@
           </div>    
         @endforeach
       <div class="d-flex justify-content-between align-items-center w-100 mt-3">
-        <a href="/platos/create" class="text-right m-1">Agregar plato</a>
+        <a href="{{ route('platos.create') }}" class="text-right m-1">Agregar plato</a>
         <div class="mt-2">
           {{$platos->links()}}
         </div>
@@ -28,7 +28,7 @@
       @else
         <div class="d-flex justify-content-between align-items-center w-100">
           <strong class="text-dark">No se encontraron platos</strong>
-          <a href="/platos/create" class="d-block text-right">Agregar</a>
+          <a href="{{ route('platos.create') }}" class="d-block text-right">Agregar</a>
         </div>
       @endif
     </div>

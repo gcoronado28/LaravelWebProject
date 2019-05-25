@@ -24,7 +24,7 @@
       @else
         <div class="d-flex justify-content-between align-items-center w-100">
           <strong class="text-dark">No se encontraron órdenes</strong>
-          <a href="/ordenes/create" class="d-block text-right">Agregar</a>
+          <a href="{{ route('ordenes.create') }}" class="d-block text-right">Agregar</a>
         </div>
       @endif
     </div>
