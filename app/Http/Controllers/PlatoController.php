@@ -67,28 +67,30 @@ class PlatoController extends Controller
      */
     public function show($id)
     {
-      $plato = Plato::find($id);
-      $ingredientesAdded = $plato->ingredientes()->select('id', 'nombre', 'cantidad')->get();
+      if($plato = Plato::find($id)){
+        $ingredientesAdded = $plato->ingredientes()->select('id', 'nombre', 'cantidad')->get();
       
-      $ingredientes = Ingrediente::whereNotIn('codigo',function($q) use ($id) {
-         $q->select('codingrediente')->from('plato_ingrediente')->where('codplato', $id);
-      })->get();
-      
-      return view('platos.show')
+        $ingredientes = Ingrediente::whereNotIn('codigo',function($q) use ($id) {
+           $q->select('codingrediente')->from('plato_ingrediente')->where('codplato', $id);
+        })->get();
+
+        return view('platos.show')
                   ->with('plato', $plato)
                   ->with('ingredientes', $ingredientes)
                   ->with('ingredientesAdded', $ingredientesAdded);
+      }
+      return abort(404);
     }
 
     public function relate(Request $request, $id)
     {
-      $plato = Plato::find($id);
-      if($request->cantidad != null){
+      if($plato = Plato::find($id)){
         $plato->ingredientes()->attach($request->ingrediente, array('cantidad' => $request->cantidad));
+        return redirect()->action(
+          'PlatoController@show', ['codigo' => $plato->codigo]
+        )->with('success', 'Ingrediente agregado al plato con éxito.');
       }
-      return redirect()->action(
-        'PlatoController@show', ['codigo' => $plato->codigo]
-      )->with('success', 'Ingrediente agregado al plato con éxito.');
+      return abort(404);
     }
 
     /**

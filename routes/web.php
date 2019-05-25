@@ -24,3 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('ingredientes', 'IngredienteController');
 Route::resource('platos', 'PlatoController');
 Route::put('/platos/relate/{plato}','PlatoController@relate')->name('platos.relate');
+Route::resource('ordenes', 'OrdenController');
+Route::put('/ordenes/relate/{orden}','OrdenController@relate')->name('ordenes.relate');
+
+Route::post('/orden/unrelate','OrdenController@unrelate')->name('orden.unrelate');

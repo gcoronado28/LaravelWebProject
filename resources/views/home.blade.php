@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container">
+    <div class="d-flex">
+      <a href="/ordenes/create" class="btn btn-primary mr-2" style="height: 100%;">Abrir Orden</a>
+    </div>
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">Ingredientes</h6>
       @if(count($ingredientes) > 0)

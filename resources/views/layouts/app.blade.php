@@ -53,26 +53,53 @@
                                 </li>
                             @endif
                         @else
-                      <a href="/home" class="nav-link text-dark">Inicio</a>
-                            <a href="/ingredientes" class="nav-link text-dark">Ingredientes</a>
-                            <a href="/platos" class="nav-link text-dark">Platos</a>
+                            <a href="/home" class="nav-link text-dark">Inicio</a>
+
                             <li class="nav-item dropdown d-inline">
-                              
                                 <a id="navbarDropdown" class="text-dark nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    Ingredientes <span class="caret"></span>
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item text-dark" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        Cerrar sesión
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+                                  <a href="/ingredientes/create" class="dropdown-item text-dark">Nuevo Ingrediente</a>
+                                  <a href="/ingredientes" class="dropdown-item text-dark">Ver Ingredientes</a>
                                 </div>
+                            </li>
+
+                            <li class="nav-item dropdown d-inline">
+                                <a id="navbarDropdown" class="text-dark nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Platos <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                  <a href="/platos/create" class="dropdown-item text-dark">Nuevo Plato</a>
+                                  <a href="/platos" class="dropdown-item text-dark">Ver Platos</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown d-inline">
+                                <a id="navbarDropdown" class="text-dark nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Órdenes <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                  <a href="/ordenes/create" class="dropdown-item text-dark">Nueva Orden</a>
+                                  <a href="/" class="dropdown-item text-dark">Cerrar Orden</a>
+                                  <a href="/ordenes "class="dropdown-item text-dark">Ver Órdenes</a>
+                                </div>
+                            </li>
+                      
+                            <li class="nav-item dropdown d-inline">
+                              <a id="navbarDropdown" class="text-dark nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-dark" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    Cerrar sesión
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                              </div>
                             </li>
                         @endguest
                     </ul>

@@ -17,4 +17,11 @@ class Plato extends Model
       return $this->belongsToMany('App\Ingrediente', 'plato_ingrediente', 'codplato', 'codingrediente')
         ->withTimestamps();
     }
+  
+    public function ordenes()
+    {
+      return $this->belongsToMany('App\Orden', 'orden_plato', 'codplato', 'numorden')
+        ->withPivot('id', 'cantidad','valor')
+        ->withTimestamps();
+    }
 }
