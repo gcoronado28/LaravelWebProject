@@ -25,7 +25,7 @@
           </div>
           <div class="form-group">
             <label for="cantidad" class="col-form-label">Cantidad</label>
-            <input type="number" step="0.00001" name="cantidad" class="form-control" id="cantidad" required>
+            <input type="number" step="0.00001" name="cantidad" class="form-control" id="cantidad" min="1" required>
           </div>
           <div class="d-flex justify-content-end">
             <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cancelar</button>
@@ -55,7 +55,7 @@
         <label for="valorPlato">Valor</label>
         <input type="text" name="valor" class="form-control" id="valorPlato" placeholder="Ej: Panes Ochoa SA" value="{{$plato->valor}}">
       </div>
-      <small id="smallEdit" class="form-text text-muted d-none">Presiona Actualizar si deseas guardar los cambios.</small>
+      <small id="smallEdit" class="form-text text-muted d-none">Presiona Actualizar si deseas guardar los cambios, o descártalos.</small>
     </div>
     <div class="bg-white rounded shadow-sm border p-3 mb-3">
       <h5 class="text-center mb-2">Ingredientes del plato</h5>
@@ -72,10 +72,11 @@
         </div>
       @endforeach
       </div>
-      <small id="smallDelete" class="form-text text-muted d-none">Presiona Actualizar para guardar los cambios.</small>
+      <small id="smallDelete" class="form-text text-muted d-none">Presiona Actualizar para guardar los cambios, o descártalos.</small>
     </div>
     
     <button id="updateBtn" type="submit" class="btn btn-primary" disabled>Actualizar</button>
+    <button id="deleteBtn" type="button" class="btn btn-secondary" onclick="event.preventDefault(); location.reload(true);" disabled>Descartar</button>
     </form>
 </div>
 @endsection

@@ -6,7 +6,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nueva relación de órden-plato</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nueva relación de orden-plato</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -26,7 +26,7 @@
           </div>
           <div class="form-group">
             <label for="cantidad" class="col-form-label">Cantidad</label>
-            <input type="number" step="0.00001" name="cantidad" class="form-control" id="cantidad" required>
+            <input type="number" step="0.00001" name="cantidad" class="form-control" id="cantidad" min="1" required>
           </div>
           <div class="d-flex justify-content-end">
             <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cancelar</button>
